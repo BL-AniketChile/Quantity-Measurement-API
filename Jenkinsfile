@@ -13,9 +13,9 @@ pipeline {
    stages {
         stage('Code Analysis') {
 		steps {
-			withSonarQubeEnv('sonarcube') {
+			withSonarQubeEnv('SonarQubeServer') {
 			sh 'printenv'
-                        sh '/var/jenkins_home/maven/apache-maven-3.6.3/bin/mvn clean package sonar:sonar'
+                        sh '/var/lib/jenkins/apache-maven-3.9.6/bin/mvn clean package sonar:sonar'
 			               		     }
 				               }
 	                       }
@@ -40,7 +40,7 @@ pipeline {
 	   
         stage('Build') {
             steps {
-                sh '/var/jenkins_home/maven/apache-maven-3.6.3/bin/mvn package -Dmaven.test.skip=true'
+                sh '/var/lib/jenkins/apache-maven-3.9.6/bin/mvn package -Dmaven.test.skip=true'
             }
         }
 	/*
